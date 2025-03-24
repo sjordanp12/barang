@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Barang</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: 'Poppins', sans-serif;
+      }
+      body {
+        background-color: #f8f9fa;
+      }
+      .edit-card {
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: none;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+      .edit-card:hover {
+        transform: translateY(-5px);
+      }
+      .header-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+        color: #fff;
+      }
+      .form-group label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: #495057;
+      }
+      .input-group-text {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+      }
+      .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        border-color: #0d6efd;
+      }
+      .btn-action {
+        border-radius: 50px;
+        padding: 8px 25px;
+        font-weight: 500;
+      }
+      .btn-update {
+        background-color: #0d6efd;
+        border: none;
+      }
+      .btn-cancel {
+        background-color: #6c757d;
+        border: none;
+      }
+      .btn-update:hover {
+        background-color: #0d6efd;
+        border: none;
+        opacity: 70%;
+      }
+      .btn-cancel:hover {
+        background-color: #6c757d;
+        border: none;
+        opacity: 70%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card edit-card">
+            <div class="card-header bg-primary text-white p-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-pencil-square header-icon"></i>
+                <h2 class="mb-0">Edit Barang</h2>
+              </div>
+            </div>
+            <div class="card-body p-5">
+              <form action="" method="POST">
+                <div class="form-group mb-4">
+                  <label for="nomor"><i class="bi bi-123 me-2"></i>Nomor</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-hash"></i></span>
+                    <input type="text" id="nomor" name="nomor" class="form-control form-control-lg" value="{{ item.nomor }}" required />
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label for="kode_barang"><i class="bi bi-upc-scan me-2"></i>Kode Barang</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-upc"></i></span>
+                    <input type="text" id="kode_barang" name="kode_barang" class="form-control form-control-lg" value="{{ item.kode_barang }}" required />
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label for="nama_barang"><i class="bi bi-tag me-2"></i>Nama Barang</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-box"></i></span>
+                    <input type="text" id="nama_barang" name="nama_barang" class="form-control form-control-lg" value="{{ item.nama_barang }}" required />
+                  </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label for="harga_barang"><i class="bi bi-currency-dollar me-2"></i>Harga Barang</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-cash-coin"></i></span>
+                    <input type="text" id="harga_barang" name="harga_barang" class="form-control form-control-lg" value="{{ item.harga_barang }}" required />
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-5">
+                  <a href="/" class="btn btn-lg btn-cancel btn-action text-light"> <i class="bi bi-x-circle me-2"></i>Batal </a>
+                  <button type="submit" class="btn btn-lg btn-update btn-action text-light"><i class="bi bi-check-circle me-2"></i>Update Barang</button>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer bg-light p-3 text-center">
+              <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Update informasi barang pada database</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
