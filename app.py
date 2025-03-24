@@ -17,11 +17,8 @@ db = client.mydatabase
 
 @app.route('/')
 def index():
-
     items = list(db.items.find()) 
-    
     return render_template('index.html', items=items)
-
 
 # Route untuk menambahkan barang
 @app.route('/add', methods=['POST'])
@@ -72,10 +69,10 @@ def edit_item(item_id):
 # Route untuk mencari barang berdasarkan kode barang
 @app.route('/search', methods=['GET'])
 def search_item():
-    kode_barang = request.args.get('kode_barang')  # Mendapatkan input kode barang dari URL query string
-    if kode_barang:
-        # Mencari barang berdasarkan kode barang di MongoDB
-        item = db.items.find_one({'kode_barang': kode_barang})
+    nama_barang = request.args.get('nama_barang')  # Mendapatkan input nama barang dari URL query string
+    if nama_barang:
+        # Mencari barang berdasarkan nama barang di MongoDB
+        item = db.items.find_one({'nama_barang': nama_barang})
         if item:
             # Jika barang ditemukan, render template hasil pencarian
             return render_template('search_result.html', item=item)
