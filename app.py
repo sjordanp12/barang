@@ -23,15 +23,11 @@ def index():
 # Route untuk menambahkan barang
 @app.route('/add', methods=['POST'])
 def add_item():
-    nomor = request.form.get('nomor')
-    kode_barang = request.form.get('kode_barang')
     nama_barang = request.form.get('nama_barang')
     harga_barang = request.form.get('harga_barang')
 
-    if nomor and kode_barang and nama_barang and harga_barang:
+    if  nama_barang and harga_barang:
         db.items.insert_one({
-            'nomor': nomor,
-            'kode_barang': kode_barang,
             'nama_barang': nama_barang,
             'harga_barang': harga_barang
         })
@@ -71,8 +67,8 @@ def edit_item(item_id):
 def search_item():
     nama_barang = request.args.get('nama_barang')  # Mendapatkan input nama barang dari URL query string
     if nama_barang:
-        # Mencari barang berdasarkan nama barang di MongoDB
-        item = db.items.find_one({'nama_barang': nama_barang})
+        # Mencari barang berdasarkan nama barang di MongoDB dengan case-insensitive
+        item = db.items.find_one({'nama_barang': {'$regex': f'^{nama_barang}$', '$options': 'i'}})
         if item:
             # Jika barang ditemukan, render template hasil pencarian
             return render_template('search_result.html', item=item)
@@ -81,6 +77,7 @@ def search_item():
             return render_template('search_result.html', message='Barang tidak ditemukan.')
     else:
         return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
