@@ -43,16 +43,12 @@ def delete_item(item_id):
 @app.route('/edit/<item_id>', methods=['GET', 'POST'])
 def edit_item(item_id):
     if request.method == 'POST':
-        nomor = request.form.get('nomor')
-        kode_barang = request.form.get('kode_barang')
         nama_barang = request.form.get('nama_barang')
         harga_barang = request.form.get('harga_barang')
 
         db.items.update_one(
             {'_id': ObjectId(item_id)}, 
             {'$set': {
-                'nomor': nomor,
-                'kode_barang': kode_barang,
                 'nama_barang': nama_barang,
                 'harga_barang': harga_barang
             }}
@@ -77,7 +73,6 @@ def search_item():
             return render_template('search_result.html', message='Barang tidak ditemukan.')
     else:
         return redirect(url_for('index'))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
